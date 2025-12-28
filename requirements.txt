@@ -6,6 +6,11 @@ tqdm
 loguru
 PyPDF2
 tiktoken
+faiss-cpu
+sentence-transformers
+openai
+numpy
+
 
 # Dev / test tools
 pytest

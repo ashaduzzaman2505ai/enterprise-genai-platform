@@ -14,7 +14,12 @@ setup(
         "neo4j",
         "openai",
         "pytest",
-        "tiktoken"
+        "tiktoken",
+        "faiss-cpu",
+        "sentence-transformers",
+        "openai",
+        "numpy"
+
     ],
     entry_points={
         "console_scripts": [

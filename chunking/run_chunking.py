@@ -22,7 +22,7 @@ def _serialize_doc(doc: DocumentSchema) -> str:
     # Compatible with both Pydantic v1 and v2
     if hasattr(doc, "model_dump_json"):
         return doc.model_dump_json()
-    return doc.json()
+    return doc.model_dump_json()
 
 
 def load_docs(path: Path) -> Iterable[DocumentSchema]:
