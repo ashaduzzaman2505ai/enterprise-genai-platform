@@ -5,3 +5,11 @@ python-dotenv
 tqdm
 loguru
 PyPDF2
+tiktoken
+
+# Dev / test tools
+pytest
+pytest-cov
+black
+flake8
+mypy

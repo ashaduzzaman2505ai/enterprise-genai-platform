@@ -14,6 +14,13 @@ setup(
         "neo4j",
         "openai",
         "pytest",
+        "tiktoken"
     ],
+    entry_points={
+        "console_scripts": [
+            "egp-ingest=tools.cli:main",
+            "egp-chunk=tools.cli:main",
+        ]
+    },
     python_requires=">=3.10",
 )
