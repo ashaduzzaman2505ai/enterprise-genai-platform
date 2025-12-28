@@ -28,6 +28,7 @@ setup(
             "egp-ingest=tools.cli:main",
             "egp-chunk=tools.cli:main",
             "egp-graph=tools.cli:main",
+            "egp-check=tools.cli:main",
         ]
     },
     python_requires=">=3.10",

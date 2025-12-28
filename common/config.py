@@ -23,6 +23,11 @@ class Settings:
     DATA_DIR: Path = Path(os.getenv("DATA_DIR", "data"))
     ENV: str = os.getenv("ENV", "dev")
 
+    # Neo4j AuraDB settings
+    NEO4J_URI: str = os.getenv("NEO4J_URI", "")
+    NEO4J_USER: str = os.getenv("NEO4J_USER", "")
+    NEO4J_PASSWORD: str = os.getenv("NEO4J_PASSWORD", "")
+
     def ensure_data_dir(self) -> Path:
         """Create `DATA_DIR` if it doesn't exist and return the Path."""
         self.DATA_DIR.mkdir(parents=True, exist_ok=True)

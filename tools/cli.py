@@ -1,16 +1,17 @@
-"""Small CLI to run ingestion, chunking, and graph building tasks.
+"""Small CLI to run ingestion, chunking, graph building, and checking tasks.
 
 Usage:
     python -m tools.cli ingest
     python -m tools.cli chunk
     python -m tools.cli graph
+    python -m tools.cli check
 """
 import sys
 from typing import Sequence
 
 
 def _usage():
-    print("Usage: python -m tools.cli [ingest|chunk|graph]")
+    print("Usage: python -m tools.cli [ingest|chunk|graph|check]")
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -35,6 +36,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         from scripts.build_graph import main as build_graph
 
         build_graph()
+        return 0
+    elif cmd == "check":
+        from scripts.check_graph import main as check_graph
+
+        check_graph()
         return 0
     else:
         _usage()

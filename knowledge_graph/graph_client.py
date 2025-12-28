@@ -4,14 +4,23 @@ import os
 from neo4j import GraphDatabase
 from neo4j.exceptions import ServiceUnavailable
 
+from common.config import settings
+
 
 class GraphClient:
     """Client for interacting with Neo4j graph database."""
 
     def __init__(self, uri: Optional[str] = None, user: Optional[str] = None, password: Optional[str] = None):
-        self.uri = uri or os.getenv("NEO4J_URI", "bolt://localhost:7687")
-        self.user = user or os.getenv("NEO4J_USER", "neo4j")
-        self.password = password or os.getenv("NEO4J_PASSWORD", "password")
+        self.uri = uri or settings.NEO4J_URI or os.getenv("NEO4J_URI", "neo4j+s://your-instance.databases.neo4j.io")
+        self.user = user or settings.NEO4J_USER or os.getenv("NEO4J_USER", "")
+        self.password = password or settings.NEO4J_PASSWORD or os.getenv("NEO4J_PASSWORD", "")
+
+        if not self.uri or not self.user or not self.password:
+            raise ValueError(
+                "Neo4j connection requires URI, USER, and PASSWORD. "
+                "Set NEO4J_URI, NEO4J_USER, and NEO4J_PASSWORD environment variables "
+                "or configure them in your settings."
+            )
 
         try:
             self.driver = GraphDatabase.driver(
@@ -40,6 +49,9 @@ class GraphClient:
         """
         try:
             with self.driver.session() as session:
-                return session.run(query, params or {})
+                result = session.run(query, params or {})
+                # Consume the result immediately to avoid consumption issues
+                records = [record for record in result]
+                return records
         except Exception as e:
             raise RuntimeError(f"Failed to execute query: {e}") from e
