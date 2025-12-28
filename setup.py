@@ -13,18 +13,21 @@ setup(
         "faiss-cpu",
         "neo4j",
         "openai",
-        "pytest",
         "tiktoken",
-        "faiss-cpu",
         "sentence-transformers",
-        "openai",
-        "numpy"
-
+        "numpy",
+        "PyPDF2",
+        "python-dotenv",
+        "tqdm",
+        "loguru",
+        "langchain",
+        "unstructured"
     ],
     entry_points={
         "console_scripts": [
             "egp-ingest=tools.cli:main",
             "egp-chunk=tools.cli:main",
+            "egp-graph=tools.cli:main",
         ]
     },
     python_requires=">=3.10",

@@ -10,6 +10,7 @@ faiss-cpu
 sentence-transformers
 openai
 numpy
+neo4j
 
 
 # Dev / test tools
