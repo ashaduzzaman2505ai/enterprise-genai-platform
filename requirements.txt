@@ -1,0 +1,7 @@
+langchain
+unstructured
+pydantic
+python-dotenv
+tqdm
+loguru
+PyPDF2
