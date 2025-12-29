@@ -24,6 +24,9 @@ setup(
         "unstructured",
         "fastapi",
         "uvicorn",
+        "streamlit",
+        "requests",
+        "flask",
     ],
     entry_points={
         "console_scripts": [

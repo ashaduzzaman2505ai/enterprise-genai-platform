@@ -13,7 +13,9 @@ numpy
 neo4j
 fastapi
 uvicorn
-
+streamlit
+requests
+flask
 
 
 # Dev / test tools
