@@ -5,8 +5,6 @@ services:
     build: .
     env_file:
       - .env
-    environment:
-      - CUDA_VISIBLE_DEVICES=""
     volumes:
       - ./data:/app/data
       - ./.env:/app/.env
