@@ -11,6 +11,9 @@ sentence-transformers
 openai
 numpy
 neo4j
+fastapi
+uvicorn
+
 
 
 # Dev / test tools

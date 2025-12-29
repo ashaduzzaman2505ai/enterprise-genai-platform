@@ -21,7 +21,9 @@ setup(
         "tqdm",
         "loguru",
         "langchain",
-        "unstructured"
+        "unstructured",
+        "fastapi",
+        "uvicorn",
     ],
     entry_points={
         "console_scripts": [
@@ -29,6 +31,7 @@ setup(
             "egp-chunk=tools.cli:main",
             "egp-graph=tools.cli:main",
             "egp-check=tools.cli:main",
+            "egp-api=tools.cli:main",
         ]
     },
     python_requires=">=3.10",

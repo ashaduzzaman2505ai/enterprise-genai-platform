@@ -10,6 +10,7 @@ Usage:
     python -m tools.cli evaluate
     python -m tools.cli monitor
     python -m tools.cli test
+    python -m tools.cli api
 """
 import sys
 from typing import Sequence
@@ -120,6 +121,13 @@ def main(argv: Sequence[str] | None = None) -> int:
         # Return non-zero if tests failed
         if summary.get('success_rate', 0) < 0.6:  # Require 60% pass rate
             return 1
+        return 0
+    elif cmd == "api":
+        import uvicorn
+        from api.main import app
+
+        print("Starting API server on http://0.0.0.0:8000")
+        uvicorn.run(app, host="0.0.0.0", port=8000)
         return 0
     else:
         _usage()
