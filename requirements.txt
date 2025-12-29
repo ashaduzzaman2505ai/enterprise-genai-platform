@@ -16,6 +16,7 @@ uvicorn
 streamlit
 requests
 flask
+flask-cors
 
 
 # Dev / test tools

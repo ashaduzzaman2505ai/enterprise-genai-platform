@@ -11,7 +11,6 @@ def health_check():
     return {"status": "healthy"}
 
 @router.post("/query", response_model=QueryResponse)
-@track_latency
 def query_llm(request: QueryRequest):
     try:
         answer = agent.answer(request.question)
