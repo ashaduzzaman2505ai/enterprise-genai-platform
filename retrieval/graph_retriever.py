@@ -29,14 +29,13 @@ class GraphRetriever(BaseRetriever):
         results = []
         for entity in entities:
             try:
-                cypher_query = """
-                MATCH (e:Entity {name: $name})-[:MENTIONS|RELATED_TO*1..$depth]-(n)
+                cypher_query = f"""
+                MATCH (e:Entity {{name: $name}})-[:MENTIONS*1..{depth}]-(n:Entity)
                 WHERE n <> e
-                RETURN DISTINCT n.name AS name, n.type AS type, n.description AS description
+                RETURN DISTINCT n.name AS name, n.type AS type, '' AS description
                 """
                 records = self.graph.run(cypher_query, {
-                    "name": entity,
-                    "depth": depth
+                    "name": entity
                 })
 
                 for record in records:

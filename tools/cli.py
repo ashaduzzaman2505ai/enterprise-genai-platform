@@ -1,4 +1,4 @@
-"""Small CLI to run ingestion, chunking, graph building, checking, and retrieval tasks.
+"""Small CLI to run ingestion, chunking, graph building, checking, retrieval, and generation tasks.
 
 Usage:
     python -m tools.cli ingest
@@ -6,6 +6,7 @@ Usage:
     python -m tools.cli graph
     python -m tools.cli check
     python -m tools.cli retrieve <query>
+    python -m tools.cli generate <question>
 """
 import sys
 from typing import Sequence
@@ -58,6 +59,21 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(f"Retrieved {len(results)} results for query: '{query}'")
         for i, result in enumerate(results, 1):
             print(f"{i}. [{result['source']}] {result['content'][:100]}...")
+        return 0
+    elif cmd == "generate":
+        if len(argv) < 2:
+            print("Error: generate command requires a question")
+            _usage()
+            return 2
+
+        question = " ".join(argv[1:])
+        from generation.answer_generator import AnswerGenerator
+
+        generator = AnswerGenerator()
+        answer = generator.answer(question)
+
+        print(f"Question: {question}")
+        print(f"Answer: {answer}")
         return 0
     else:
         _usage()
