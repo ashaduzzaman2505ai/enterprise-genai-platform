@@ -1,0 +1,48 @@
+[
+  {
+    "id": "fiscal_incentives",
+    "question": "What fiscal incentives are provided to private power companies?",
+    "gold_context": [
+      "Tax exemption from corporate income tax for 15 years",
+      "Exemption from customs duty and VAT on imported plant and equipment"
+    ],
+    "expected_answer_keywords": ["tax", "exemption", "corporate", "income", "customs", "duty", "vat"]
+  },
+  {
+    "id": "regulatory_entities",
+    "question": "Which entities are responsible for the implementation and regulation of private power projects?",
+    "gold_context": [
+      "Power Cell, Ministry of Energy and Mineral Resources",
+      "Bangladesh Energy Regulatory Commission (BERC)"
+    ],
+    "expected_answer_keywords": ["power cell", "ministry", "energy", "berc", "regulatory", "commission"]
+  },
+  {
+    "id": "contractual_documents",
+    "question": "What are the core contractual documents provided by the Government?",
+    "gold_context": [
+      "Implementation Agreement (IA)",
+      "Power Purchase Agreement (PPA)",
+      "Fuel Supply Agreement (FSA)"
+    ],
+    "expected_answer_keywords": ["implementation agreement", "power purchase agreement", "fuel supply agreement", "ia", "ppa", "fsa"]
+  },
+  {
+    "id": "project_selection",
+    "question": "How are private power projects selected and what is the equity requirement?",
+    "gold_context": [
+      "Competitive bidding based on the lowest levelized tariff",
+      "Minimum equity participation of 20%"
+    ],
+    "expected_answer_keywords": ["competitive bidding", "lowest levelized tariff", "equity", "participation", "20%"]
+  },
+  {
+    "id": "renewable_energy",
+    "question": "What support is provided for renewable energy projects?",
+    "gold_context": [
+      "Government encourages investment in projects based on renewable and non-conventional sources",
+      "Priority given to hydro, solar, wind, and biomass projects"
+    ],
+    "expected_answer_keywords": ["renewable", "non-conventional", "hydro", "solar", "wind", "biomass", "investment"]
+  }
+]

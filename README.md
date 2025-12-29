@@ -39,6 +39,33 @@ This platform uses Neo4j AuraDB Free for the knowledge graph. To set up:
 
 ### Usage
 
+#### CLI Commands
+
+The platform provides a comprehensive CLI for all operations:
+
+```bash
+# Data ingestion and processing
+python -m tools.cli ingest          # Ingest documents from data/raw/
+python -m tools.cli chunk           # Process documents into chunks
+
+# Knowledge graph operations
+python -m tools.cli graph           # Build knowledge graph
+python -m tools.cli check           # Check graph status
+
+# Retrieval and generation
+python -m tools.cli retrieve "query"    # Retrieve relevant information
+python -m tools.cli generate "question" # Generate answers to questions
+
+# Evaluation and monitoring
+python -m tools.cli evaluate        # Run comprehensive evaluation
+python -m tools.cli monitor         # View performance metrics
+python -m tools.cli test            # Run prompt regression tests
+```
+
+#### Direct Script Usage
+
+Alternatively, you can run individual scripts:
+
 Build the knowledge graph:
 ```bash
 python scripts/build_graph.py
