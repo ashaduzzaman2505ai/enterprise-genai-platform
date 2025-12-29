@@ -27,6 +27,7 @@ setup(
         "streamlit",
         "requests",
         "flask",
+        "flask-cors",
     ],
     entry_points={
         "console_scripts": [
