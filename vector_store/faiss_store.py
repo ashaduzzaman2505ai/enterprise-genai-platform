@@ -1,18 +1,32 @@
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
+from pathlib import Path
 
 import faiss
 import numpy as np
 
 from vector_store.base import BaseVectorStore
+from common.config import settings
 
 
 class FaissVectorStore(BaseVectorStore):
     """Vector store using FAISS for efficient similarity search."""
 
-    def __init__(self, dim: int):
+    def __init__(self, dim: int, index_path: Optional[Path] = None):
         self.dim = dim
-        self.index = faiss.IndexFlatL2(dim)
+        self.index_path = index_path or settings.DATA_DIR / "vector_store" / "faiss.index"
+        self.index_path.parent.mkdir(parents=True, exist_ok=True)
+        
+        if self.index_path.exists():
+            self.index = faiss.read_index(str(self.index_path))
+        else:
+            self.index = faiss.IndexFlatL2(dim)
+        
         self.metadatas: List[Dict[str, Any]] = []
+        self.metadata_path = self.index_path.with_suffix('.metadata.json')
+        if self.metadata_path.exists():
+            import json
+            with open(self.metadata_path, 'r') as f:
+                self.metadatas = json.load(f)
 
     def add(self, embeddings: List[List[float]], metadatas: List[Dict[str, Any]]) -> None:
         if len(embeddings) != len(metadatas):
@@ -30,3 +44,10 @@ class FaissVectorStore(BaseVectorStore):
             if 0 <= idx < len(self.metadatas):
                 results.append(self.metadatas[idx])
         return results
+
+    def save(self) -> None:
+        """Save the index and metadata to disk."""
+        faiss.write_index(self.index, str(self.index_path))
+        import json
+        with open(self.metadata_path, 'w') as f:
+            json.dump(self.metadatas, f)

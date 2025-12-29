@@ -46,6 +46,9 @@ def main():
     retriever = Retriever(embedder=embedder)
     retriever.index(texts, metadatas)
 
+    # Save the index
+    retriever.store.save()
+
     # Test search
     test_query = "What is the compliance policy?"
     logger.info("Testing query: {}", test_query)
